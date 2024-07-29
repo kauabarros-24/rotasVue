@@ -1,85 +1,59 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script setup></script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
+  <div id="layout">
+    <header>
+      <h1>Meu projeto</h1>
+    </header>
+    <aside>
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <router-link to="/" exact>Home</router-link>
+        <router-link to="/products">Produtos</router-link>
+        <router-link to="/contact">Contato</router-link>
+        <router-link to="/about">Sobre nós</router-link>
       </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    </aside>
+    <main>
+      <RouterView />
+    </main>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+  #layout {
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+    min-height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 11fr;
+    grid-template-rows: auto 1fr;
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+    grid-template-areas:
+      'sidebar header'
+      'sidebar main';
+  }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
   header {
+    grid-area: header;
+    height: 10vh;
+  }
+
+  aside {
+    grid-area: sidebar;
+  }
+
+  aside nav {
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  main {
+    grid-area: main;
   }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
